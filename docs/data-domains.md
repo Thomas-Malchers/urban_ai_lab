@@ -1,23 +1,14 @@
 # Data Domains
 
-| Aspekt | Orthofoto | LiDAR | CityGML |
+| Aspekt | Orthophoto | LiDAR | CityGML |
 |---|---|---|---|
 | Datentyp | Raster | Punktwolke | semantisches 3D-Modell |
-| zentrale Einheit | Tile / Asset | Tile / Punkte | Gebäude / Flächen |
-| typische Verarbeitung | Tiling, Konvertierung, Ausschnitte | räumliche Indizierung, Klassifikation | Parsing, Normalisierung |
-| Qualitätsschwerpunkt | Bild, Auflösung, Abdeckung | Punktdichte, Ausreißer, Klassifikation | Geometrie, Topologie, Semantik |
-| typische Nutzung | Computer Vision, Mapping | Höhe, Gelände, Vegetation | Gebäudeintegration, 3D |
+| primäre Raw-Repräsentation | GeoTIFF / Source Raster | LAS / LAZ | GML / XML |
+| mögliche standardisierte Repräsentation | COG | LAZ / COPC-Kandidat | GeoParquet |
+| zentrale Einheit | Tile / Asset / Window | Tile / Punkte | Gebäude / Flächen |
+| Processing | Windowing, Resampling, Raster Processing | Filterung, Klassifikation, Spatial Processing | Parsing, Normalisierung, Spatial Processing |
+| Quality | Bild, Auflösung, Abdeckung | Punktdichte, Ausreißer, Klassifikation | Geometrie, Topologie, Semantik |
+| mögliche Compute-Engine | GDAL / Rasterio / Python | PDAL / Python / ggf. Spark | Python / PySpark + Sedona |
+| typische Nutzung | CV, Mapping | Höhe, Gelände, Vegetation | Gebäudeintegration, 3D |
 
-## Orthofoto
-
-Rasterdaten werden über räumliche Auflösung, Kacheln, Bildqualität, Abdeckung und zeitliche Aktualität beschrieben. Sie bilden eine wichtige Grundlage für Mapping und Computer Vision.
-
-## LiDAR
-
-Punktwolken werden insbesondere anhand von Punktdichte, Klassifikation, Höhenbezug und Abdeckung bewertet. Sie unterstützen Analysen von Gelände, Höhe und Vegetation.
-
-## CityGML
-
-Semantische 3D-Modelle beschreiben Gebäude, Building Parts sowie Dach- und Fassadenflächen. Im Mittelpunkt stehen Geometrie, Topologie, Semantik und Vollständigkeit.
-
-Die konkrete Pipeline- und Qualitätsspezifikation einer Datendomäne wird erst vertieft, wenn diese Domäne aktiv implementiert oder überarbeitet wird.
+Die genannten Formate und Werkzeuge sind Proposed Patterns beziehungsweise Kandidaten, keine abschließend beschlossene Implementierung. Domänenspezifische Processing- und Quality-Logik wird bei aktiver Umsetzung vertieft.

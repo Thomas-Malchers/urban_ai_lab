@@ -1,5 +1,5 @@
-site_name: Urban AI Lab – Data Architecture
-site_description: Zielbild und logische Architektur des Urban Data Layer
+site_name: Urban AI Lab
+site_description: L0-, L1- und ausgewählte L2-Architektur für urbane Daten und KI
 site_url: https://thomas-malchers.github.io/urban_ai_lab/
 repo_url: https://github.com/Thomas-Malchers/urban_ai_lab
 edit_uri: edit/main/docs/
@@ -18,11 +18,9 @@ exclude_docs: |
   08_operations/
   09_decisions/
   10_templates/
-
-# Dokumentations-Assets dürfen mitgebaut werden, ohne als eigene Seiten in der
-# Navigation zu erscheinen. Das Material-Theme schreibt ebenfalls nach assets/.
-not_in_nav: |
-  assets/**
+  l0-zielbild.md
+  l1-datenarchitektur.md
+  assets/**/*.md
 
 theme:
   name: material
@@ -49,7 +47,13 @@ markdown_extensions:
 
 nav:
   - Start: index.md
-  - "L0 – Zielbild": l0-zielbild.md
-  - "L1 – Datenarchitektur": l1-datenarchitektur.md
+  - "L0 – Gesamtarchitektur": l0-gesamtarchitektur.md
+  - "L1 – Data Platform": l1-data-platform.md
+  - "L1 – AI / Model Platform": l1-ai-model-platform.md
+  - "L2 – Architekturbausteine":
+      - "Domain Data Processing": l2-domain-processing.md
+      - "Storage & Access": l2-storage-access.md
+      - "Data Integration & Transformation": l2-data-integration-transformation.md
+      - "AI Model Lifecycle": l2-ai-model-lifecycle.md
   - Data Domains: data-domains.md
   - "Entscheidungen & offene Fragen": offene-fragen.md

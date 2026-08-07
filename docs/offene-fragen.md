@@ -1,41 +1,46 @@
 # Entscheidungen & offene Fragen
 
-Diese Arbeitsliste macht bewusst sichtbar, welche Architekturfragen noch nicht entschieden sind.
+## Als Nächstes zu entscheiden
 
-## Storage und Dateiformate
+1. Welche Raw- und Standardformate verwenden wir verbindlich je Datendomäne?
+2. Ist COG das Standardformat für aufbereitete Orthofotos?
+3. Ist GeoParquet das Standardformat für normalisierte CityGML-Daten?
+4. Ab welcher Datengröße oder welchem Workflow setzen wir Spark + Sedona ein?
+5. Welche Rolle übernimmt PostGIS gegenüber dem file-basierten Data Layer?
+6. Welche strukturierten Transformationen sollen mit dbt umgesetzt werden?
 
-- Welche Rohdaten bleiben dateibasiert?
-- Welche standardisierten Formate verwenden wir?
-- Welche Daten gehören in Object Storage, welche in eine räumliche Datenbank?
-- Was wird materialisiert und was on demand erzeugt?
+## Storage
+
+- Object Storage oder Filesystem?
+- Wie partitionieren und versionieren wir Assets?
+- Welche Retention- und Cache-Strategien gelten?
+
+## Raster
+
+- Wie erzeugen und prüfen wir COGs?
+- Wie entstehen dynamische Chips und Dataset Manifests?
+- Welche Exporte benötigt der Annotation-Prozess?
+
+## CityGML
+
+- Welcher Parser und welches normalisierte Semantikmodell werden verwendet?
+- Wie werden GML-Geometrien konvertiert und GeoParquet-Schemas gestaltet?
+- Wo liegt die Schwelle für Spark / Sedona?
 
 ## Integration
 
-- Was ist die stabile interne Gebäude-ID und welche weiteren Objekte benötigen stabile IDs?
-- Wie bleiben Source IDs erhalten?
-- Wie behandeln wir unterschiedliche Aufnahmezeitpunkte?
-- Wie machen wir Cross-Source-Konflikte sichtbar?
+- Wie definieren wir `building_id`, erhalten Source IDs und behandeln Zeit?
+- Wie erfolgt Cross-Source-Matching?
 
-## Versionierung und Lineage
+## Serving
 
-- Welche Granularität benötigen Datenversionen?
-- Wie referenzieren abgeleitete Werte ihre Quellen?
-- Wie dokumentieren wir Pipeline-Versionen und Änderungen?
+- Welche Daten werden in PostGIS veröffentlicht, welche bleiben file-basiert?
+- Welche APIs werden tatsächlich benötigt?
 
-## Zugriff
+## Transformation
 
-- Wie erhalten Data Scientists Daten: SQL, Files, GeoParquet, Python API, STAC oder eine Kombination?
+- Nutzen wir dbt; wenn ja, für welche Modelle?
+- Wo verläuft die Grenze zwischen Spark SQL und dbt?
+- Welche Tests gehören auf welchen Layer?
 
-## Qualität
-
-- Welche Qualitätsdimensionen sind je Datendomäne relevant?
-- Welche Checks blockieren eine Veröffentlichung, welche erzeugen Warnungen?
-- Welche Qualitätsinformationen müssen beim Datenzugriff sichtbar sein?
-
-## Zukunft
-
-- Wie dockt später die AI-/ML-Plattform an?
-- Welche Datenprodukte werden zuerst benötigt?
-- Welche Use Cases bestimmen die Priorität der Architekturentscheidungen?
-
-Technische Entscheidungen werden bei Bedarf weiterhin als ADR im Repository dokumentiert.
+Technische Entscheidungen werden weiterhin als ADR im Repository dokumentiert.
