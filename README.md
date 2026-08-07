@@ -4,7 +4,7 @@ Dieses Repository ist die versionierte technische Quelle der Wahrheit für die Z
 
 ## Dokumentation
 
-Die Inhalte folgen den Zoomstufen Vision (L0), Gesamtarchitektur (L1), Plattform und Domänen (L2), Vertical Slice (L3) sowie späteren Implementierungsdetails (L4). Die veröffentlichte Website liegt künftig unter `https://example.org/urban-ai-lab-architecture/`.
+Die Inhalte folgen den Zoomstufen Vision (L0), Gesamtarchitektur (L1), Plattform und Domänen (L2), Vertical Slice (L3) sowie späteren Implementierungsdetails (L4). Die veröffentlichte Website liegt künftig unter `https://thomas-malchers.github.io/urban_ai_lab/`.
 
 Confluence kann als Landingpage und für Zusammenarbeit dienen. Architektur, ADRs, Verträge und Diagrammquellen werden ausschließlich hier gepflegt.
 

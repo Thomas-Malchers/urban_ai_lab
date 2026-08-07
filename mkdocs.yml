@@ -1,7 +1,7 @@
 site_name: Urban AI Lab Architecture
 site_description: Technische Architektur- und Plattformdokumentation
-site_url: https://example.org/urban-ai-lab-architecture/
-repo_url: https://example.org/urban-ai-lab-architecture
+site_url: https://thomas-malchers.github.io/urban_ai_lab/
+repo_url: https://github.com/Thomas-Malchers/urban_ai_lab
 edit_uri: edit/main/docs/
 not_in_nav: |
   assets/**
