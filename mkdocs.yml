@@ -18,7 +18,11 @@ exclude_docs: |
   08_operations/
   09_decisions/
   10_templates/
-  assets/
+
+# Dokumentations-Assets dürfen mitgebaut werden, ohne als eigene Seiten in der
+# Navigation zu erscheinen. Das Material-Theme schreibt ebenfalls nach assets/.
+not_in_nav: |
+  assets/**
 
 theme:
   name: material
