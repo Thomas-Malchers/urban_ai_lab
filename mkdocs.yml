@@ -1,19 +1,34 @@
-site_name: Urban AI Lab Architecture
-site_description: Technische Architektur- und Plattformdokumentation
+site_name: Urban AI Lab – Data Architecture
+site_description: Zielbild und logische Architektur des Urban Data Layer
 site_url: https://thomas-malchers.github.io/urban_ai_lab/
 repo_url: https://github.com/Thomas-Malchers/urban_ai_lab
 edit_uri: edit/main/docs/
-not_in_nav: |
-  assets/**
+
+# Bestehende Detailseiten bleiben als Wissensbestand im Repository, sind aber
+# weder Teil der sichtbaren Website noch ihres Suchindex.
+exclude_docs: |
+  00_overview/
+  01_overall-architecture/
+  02_data-platform/
+  03_data-domains/
+  04_ai-platform/
+  05_data-products/
+  06_use-cases/
+  07_interfaces/
+  08_operations/
+  09_decisions/
+  10_templates/
+  assets/
+
 theme:
   name: material
   language: de
   features:
-    - navigation.sections
-    - navigation.indexes
     - search.highlight
+
 plugins:
   - search
+
 markdown_extensions:
   - admonition
   - attr_list
@@ -27,90 +42,10 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+
 nav:
   - Start: index.md
-  - Überblick:
-      - Vision: 00_overview/vision.md
-      - Scope: 00_overview/scope.md
-      - Architekturprinzipien: 00_overview/architecture-principles.md
-      - Dokumentationsstrategie: 00_overview/documentation-strategy.md
-      - Roadmap: 00_overview/roadmap.md
-  - Gesamtarchitektur:
-      - Systemkontext: 01_overall-architecture/system-context.md
-      - Capability Map: 01_overall-architecture/capability-map.md
-      - Logische Architektur: 01_overall-architecture/logical-architecture.md
-      - End-to-End-Datenfluss: 01_overall-architecture/end-to-end-data-flow.md
-      - Übergreifende Fähigkeiten: 01_overall-architecture/cross-cutting-capabilities.md
-  - Urban Data Platform:
-      - Überblick: 02_data-platform/overview.md
-      - Ingestion und Storage: 02_data-platform/ingestion-and-storage.md
-      - Datenprodukte: 02_data-platform/data-products.md
-      - Integriertes Objektmodell: 02_data-platform/integrated-urban-data-model.md
-      - Metadaten, Versionierung und Lineage: 02_data-platform/metadata-versioning-lineage.md
-      - Datenzugriff: 02_data-platform/data-access.md
-  - Data Domains:
-      - Überblick: 03_data-domains/overview.md
-      - Orthofotos:
-          - Überblick: 03_data-domains/orthophotos/overview.md
-          - Pipeline: 03_data-domains/orthophotos/pipeline.md
-          - Qualität: 03_data-domains/orthophotos/quality.md
-          - Offene Fragen: 03_data-domains/orthophotos/open-questions.md
-      - LiDAR:
-          - Überblick: 03_data-domains/lidar/overview.md
-          - Pipeline: 03_data-domains/lidar/pipeline.md
-          - Qualität: 03_data-domains/lidar/quality.md
-          - Offene Fragen: 03_data-domains/lidar/open-questions.md
-      - CityGML:
-          - Überblick: 03_data-domains/citygml/overview.md
-          - Pipeline: 03_data-domains/citygml/pipeline.md
-          - Qualität: 03_data-domains/citygml/quality.md
-          - Offene Fragen: 03_data-domains/citygml/open-questions.md
-      - Externe Daten:
-          - Überblick: 03_data-domains/external-data/overview.md
-          - Offene Fragen: 03_data-domains/external-data/open-questions.md
-  - AI Platform:
-      - Überblick: 04_ai-platform/overview.md
-      - Datasets und Annotationen: 04_ai-platform/datasets-and-annotations.md
-      - Training und Experimente: 04_ai-platform/training-and-experiments.md
-      - Model Registry: 04_ai-platform/model-registry.md
-      - Pre- und Postprocessing: 04_ai-platform/preprocessing-and-postprocessing.md
-      - Inference: 04_ai-platform/inference.md
-      - Monitoring: 04_ai-platform/monitoring.md
-      - Active Learning: 04_ai-platform/active-learning.md
-  - Data Products:
-      - Überblick: 05_data-products/overview.md
-      - Orthophoto Collection: 05_data-products/orthophoto-collection.md
-      - LiDAR Collection: 05_data-products/lidar-collection.md
-      - City Building Model: 05_data-products/city-building-model.md
-      - Integrated Buildings: 05_data-products/integrated-buildings.md
-      - Model Predictions: 05_data-products/model-predictions.md
-      - Derived Indicators: 05_data-products/derived-indicators.md
-  - Use Cases:
-      - Überblick: 06_use-cases/overview.md
-      - Roof Object Detection:
-          - Überblick: 06_use-cases/roof-object-detection/overview.md
-          - Vertical Slice: 06_use-cases/roof-object-detection/vertical-slice.md
-          - Datenfluss: 06_use-cases/roof-object-detection/data-flow.md
-          - ML Lifecycle: 06_use-cases/roof-object-detection/ml-lifecycle.md
-          - Offene Fragen: 06_use-cases/roof-object-detection/open-questions.md
-  - Schnittstellen:
-      - Überblick: 07_interfaces/overview.md
-      - Data Science: 07_interfaces/data-science-access.md
-      - APIs: 07_interfaces/apis.md
-      - Geospatial Services: 07_interfaces/geospatial-services.md
-      - Visualisierung: 07_interfaces/visualization.md
-      - Demonstratoren: 07_interfaces/demonstrators.md
-  - Betrieb:
-      - Überblick: 08_operations/overview.md
-      - Deployment: 08_operations/deployment.md
-      - Observability: 08_operations/observability.md
-      - Security und Governance: 08_operations/security-and-governance.md
-      - Backup und Recovery: 08_operations/backup-and-recovery.md
-      - Kosten und Ressourcen: 08_operations/cost-and-resource-management.md
-  - Entscheidungen: 09_decisions/index.md
-  - Templates:
-      - Data Domain: 10_templates/data-domain-template.md
-      - Data Product: 10_templates/data-product-template.md
-      - Pipeline: 10_templates/pipeline-template.md
-      - Use Case: 10_templates/use-case-template.md
-      - ADR: 10_templates/adr-template.md
+  - "L0 – Zielbild": l0-zielbild.md
+  - "L1 – Datenarchitektur": l1-datenarchitektur.md
+  - Data Domains: data-domains.md
+  - "Entscheidungen & offene Fragen": offene-fragen.md

@@ -1,29 +1,30 @@
-# Urban AI Lab Architecture
+# Urban AI Lab – Data Architecture
 
-Dieses Repository ist die versionierte technische Quelle der Wahrheit für die Zielarchitektur des Urban AI Lab. Es beschreibt, wie heterogene urbane Daten nachvollziehbar in qualitätsgesicherte Datenprodukte, Analysen und KI-Ergebnisse überführt werden. Der Inhalt ist ein Architekturentwurf; er implementiert keine produktive Plattform.
+Dieses Repository dokumentiert das Architektur-Zielbild für eine gemeinsame Datenbasis aus Orthofotos, LiDAR, CityGML und weiteren urbanen Daten.
 
-## Dokumentation
+**Current focus: L0 / L1 Urban Data Architecture**
 
-Die Inhalte folgen den Zoomstufen Vision (L0), Gesamtarchitektur (L1), Plattform und Domänen (L2), Vertical Slice (L3) sowie späteren Implementierungsdetails (L4). Die veröffentlichte Website liegt künftig unter `https://thomas-malchers.github.io/urban_ai_lab/`.
+Die sichtbare Dokumentation beschreibt das Zielbild, den logischen Datenfluss, die drei zentralen Datendomänen und offene Architekturfragen. Detailliertere Plattform-, Pipeline- und AI-Inhalte bleiben als Wissensbestand erhalten, stehen derzeit aber nicht im Vordergrund.
 
-Confluence kann als Landingpage und für Zusammenarbeit dienen. Architektur, ADRs, Verträge und Diagrammquellen werden ausschließlich hier gepflegt.
-
-## Lokal starten
+## Lokal verwenden
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-docs.txt
-make docs-serve
-```
-
-Unter Windows:
-
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
 pip install -r requirements-docs.txt
 mkdocs serve
 ```
 
-Mit `make docs-build` wird die Website im Strict Mode gebaut. Änderungen erfolgen über thematische Branches und Pull Requests; Details stehen in [CONTRIBUTING.md](CONTRIBUTING.md).
+Den produktionsnahen Build prüfen:
+
+```bash
+mkdocs build --strict
+```
+
+## Repository-Struktur
+
+- `docs/` – sichtbare L0-/L1-Dokumentation und bestehende Detailseiten
+- `decisions/` – Architecture Decision Records
+- `contracts/` – vorbereitete Vertragsstrukturen
+- `diagrams/` – Diagrammquellen und Exporte
+- `scripts/` – Hilfs- und Prüfskripte
+
+L2–L4-Inhalte werden erst vertieft, wenn konkrete Domänen, Pipelines oder Implementierungen bearbeitet werden. Hinweise zur Mitarbeit stehen in [CONTRIBUTING.md](CONTRIBUTING.md).
