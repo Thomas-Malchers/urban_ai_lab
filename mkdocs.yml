@@ -54,6 +54,8 @@ nav:
       - "Domain Data Processing": l2-domain-processing.md
       - "Storage & Access": l2-storage-access.md
       - "Data Integration & Transformation": l2-data-integration-transformation.md
-      - "AI Model Lifecycle": l2-ai-model-lifecycle.md
+      - "AI / Model Platform":
+          - "Model Lifecycle": l2-ai-model-lifecycle.md
+          - "Geospatial Inference & Postprocessing": l2-geospatial-inference-postprocessing.md
   - Data Domains: data-domains.md
   - "Decisions & Open Questions": offene-fragen.md
