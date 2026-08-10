@@ -1,11 +1,11 @@
 site_name: Urban AI Lab
-site_description: L0-, L1- und ausgewählte L2-Architektur für urbane Daten und KI
+site_description: L0, L1, and selected L2 architecture for urban data and AI
 site_url: https://thomas-malchers.github.io/urban_ai_lab/
 repo_url: https://github.com/Thomas-Malchers/urban_ai_lab
 edit_uri: edit/main/docs/
 
-# Bestehende Detailseiten bleiben als Wissensbestand im Repository, sind aber
-# weder Teil der sichtbaren Website noch ihres Suchindex.
+# Existing detail pages remain in the repository as a knowledge base, but are
+# excluded from the visible website and its search index.
 exclude_docs: |
   00_overview/
   01_overall-architecture/
@@ -24,7 +24,7 @@ exclude_docs: |
 
 theme:
   name: material
-  language: de
+  language: en
   features:
     - search.highlight
 
@@ -46,14 +46,14 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
-  - Start: index.md
-  - "L0 – Gesamtarchitektur": l0-gesamtarchitektur.md
+  - Home: index.md
+  - "L0 – Overall Architecture": l0-gesamtarchitektur.md
   - "L1 – Data Platform": l1-data-platform.md
   - "L1 – AI / Model Platform": l1-ai-model-platform.md
-  - "L2 – Architekturbausteine":
+  - "L2 – Architecture Building Blocks":
       - "Domain Data Processing": l2-domain-processing.md
       - "Storage & Access": l2-storage-access.md
       - "Data Integration & Transformation": l2-data-integration-transformation.md
       - "AI Model Lifecycle": l2-ai-model-lifecycle.md
   - Data Domains: data-domains.md
-  - "Entscheidungen & offene Fragen": offene-fragen.md
+  - "Decisions & Open Questions": offene-fragen.md

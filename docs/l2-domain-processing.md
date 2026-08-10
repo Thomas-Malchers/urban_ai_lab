@@ -4,15 +4,15 @@
 
 ```mermaid
 flowchart LR
-    S["Source"] --> I["Ingestion"] --> R["Raw Asset"]
+    S["Source"] --> I["Ingestion"] --> R["Raw Domain Collection"]
     R --> V["Validation"] --> P["Domain Processing"]
-    P --> Q["Domain Quality"] --> O["Standardized / Published Asset"]
+    P --> Q["Domain Quality"] --> O["Standardized / Optimized Domain Asset"]
 ```
 
-Die Pipeline-Struktur kann ähnlich sein; die inhaltliche Quality-Logik ist je Datendomäne unterschiedlich. Konkrete Schwellenwerte sind noch offen.
+The pipeline structure may be similar across domains, but quality rules differ by data domain. Concrete thresholds remain open.
 
-| Domäne | Qualitätsdimensionen |
+| Domain | Quality dimensions |
 |---|---|
-| Orthophoto | technische Lesbarkeit, CRS, Auflösung, Abdeckung, NoData, Bildqualität, zeitliche Eignung |
-| LiDAR | technische Lesbarkeit, Punktdichte, Ausreißer, Klassifikation, Höhenreferenz, räumliche Abdeckung |
-| CityGML | Schema, IDs, geometrische Validität, Topologie, Semantik, Vollständigkeit, Höhenbezug |
+| Orthophoto | technical readability, CRS, resolution, coverage, NoData, image quality, temporal suitability |
+| LiDAR | technical readability, point density, outliers, classification, vertical reference, spatial coverage |
+| CityGML | schema, IDs, geometric validity, topology, semantics, completeness, vertical reference |

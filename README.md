@@ -1,30 +1,30 @@
 # Urban AI Lab – Data Architecture
 
-Dieses Repository dokumentiert das Architektur-Zielbild für eine gemeinsame Datenbasis aus Orthofotos, LiDAR, CityGML und weiteren urbanen Daten.
+This repository documents the target architecture for a shared data foundation spanning orthophotos, LiDAR, CityGML, and other urban data.
 
 **Current focus: L0 / L1 / selected L2 Urban Data & AI Architecture**
 
-Die sichtbare Dokumentation beschreibt die Gesamtarchitektur, Data Platform, AI / Model Platform und ausgewählte L2-Patterns. Konkrete Implementierung, Deployment und Toolkonfiguration bleiben einer späteren L3-Ebene vorbehalten.
+The published documentation covers the overall architecture, Data Platform, AI / Model Platform, and selected L2 patterns. Concrete implementation, deployment, and tool configuration are deferred to a later L3 level.
 
-## Lokal verwenden
+## Local usage
 
 ```bash
 pip install -r requirements-docs.txt
 mkdocs serve
 ```
 
-Den produktionsnahen Build prüfen:
+Run a production-like validation build with:
 
 ```bash
 mkdocs build --strict
 ```
 
-## Repository-Struktur
+## Repository structure
 
-- `docs/` – sichtbare L0-/L1-/L2-Dokumentation und bestehende Detailseiten
+- `docs/` – published L0/L1/L2 documentation and existing detailed pages
 - `decisions/` – Architecture Decision Records
-- `contracts/` – vorbereitete Vertragsstrukturen
-- `diagrams/` – Diagrammquellen und Exporte
-- `scripts/` – Hilfs- und Prüfskripte
+- `contracts/` – prepared contract structures
+- `diagrams/` – diagram sources and exports
+- `scripts/` – helper and validation scripts
 
-L3-/L4-Inhalte werden erst vertieft, wenn konkrete Pipelines oder Implementierungen bearbeitet werden. Hinweise zur Mitarbeit stehen in [CONTRIBUTING.md](CONTRIBUTING.md).
+L3/L4 content will be expanded when concrete pipelines or implementations are developed. See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidance.

@@ -1,17 +1,17 @@
 # Urban AI Lab
 
-Das Urban AI Lab entwickelt eine gemeinsame Daten- und KI-Architektur für heterogene urbane Daten wie Orthofotos, LiDAR und CityGML.
+The Urban AI Lab develops a shared data and AI architecture for heterogeneous urban data such as orthophotos, LiDAR, and CityGML.
 
-Die Dokumentation betrachtet die Architektur aktuell auf drei Ebenen:
+The documentation currently describes three architecture levels:
 
-- **L0:** Gesamtbild des Urban AI Lab
-- **L1:** Data Platform und AI / Model Platform
-- **L2:** ausgewählte Architekturbausteine und grundlegende Processing-/Storage-Patterns
+- **L0:** the overall Urban AI Lab system;
+- **L1:** the Data Platform and AI / Model Platform;
+- **L2:** selected architecture building blocks and foundational processing and storage patterns.
 
-Konkrete Implementierungsdetails werden bewusst erst auf einer späteren L3-Ebene dokumentiert.
+Concrete implementation details are intentionally deferred to a later L3 level.
 
-[L0 – Gesamtarchitektur](l0-gesamtarchitektur.md){ .md-button .md-button--primary }
+[L0 – Overall Architecture](l0-gesamtarchitektur.md){ .md-button .md-button--primary }
 [L1 – Data Platform](l1-data-platform.md){ .md-button }
 [L1 – AI / Model Platform](l1-ai-model-platform.md){ .md-button }
 [L2 – Storage & Access](l2-storage-access.md){ .md-button }
-[Offene Fragen](offene-fragen.md){ .md-button }
+[Open Questions](offene-fragen.md){ .md-button }

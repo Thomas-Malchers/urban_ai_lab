@@ -2,16 +2,16 @@
 
 **Status: Proposed patterns**
 
-Große Geodaten sollen primär als versionierte, offene und partiell lesbare Assets vorliegen. Ausschnitte und Zwischenprodukte entstehen möglichst on demand oder als Cache statt als dauerhafte Kopien. Storage und Compute bleiben logisch getrennt.
+Large geospatial datasets should primarily remain versioned, open, and partially readable assets. Subsets and intermediate products are generated on demand or cached where possible instead of being stored as permanent copies. Storage and compute remain logically separate.
 
-## File-first Data Layer
+## File-first data layer
 
 ```mermaid
 flowchart TD
     F["File-based Data Layer<br/>COG · GeoParquet · LAZ / COPC"]
     P["Processing<br/>Python · Spark / Sedona"]
     C["Curated Data Products"]
-    DB["PostGIS / Serving Views"]
+    DB["PostGIS<br/>Canonical Entities · Relations · Serving Views"]
     DS["Data Science"]
     API["API / Demonstrator"]
     F --> P --> C
@@ -19,22 +19,22 @@ flowchart TD
     C --> DB --> API
 ```
 
-Große Datenbestände müssen nicht vollständig in einer zentralen Datenbank materialisiert werden.
+Large datasets do not need to be fully materialized in one central database. File storage holds large assets and analytical data; PostGIS may hold curated objects, relationships, and serving-oriented views.
 
-## Orthophoto: COG + Dynamic Window Access
+## Orthophotos: COG and dynamic window access
 
-**Proposed:** Orthophotos werden als COG standardisiert und über Bounding Box oder Window partiell gelesen. Millionen PNG-/JPEG-Chips sollen nicht standardmäßig dauerhaft gespeichert werden.
+**Proposed:** Orthophotos are standardized as COG and read partially by bounding box or window. Millions of PNG or JPEG chips should not be stored permanently by default.
 
 ```text
-COG + Bounding Box / Window + Dataset Manifest + Generierungsparameter
-= reproduzierbarer Sample
+COG + Bounding Box / Window + Dataset Manifest + Generation Parameters
+= reproducible sample
 ```
 
-Persistente Chips sind begründete Ableitungen, etwa für Annotation, temporäre Training-Caches, Exporte, Benchmarks, Debugging oder Performanceoptimierung.
+Persistent chips are justified derivations for annotation, temporary training caches, exports, benchmarks, debugging, or performance optimization.
 
-## Dataset Manifest statt Dataset-Kopie
+## Dataset manifest instead of dataset copy
 
-Dataset-Versionen erfassen primär Auswahl, Referenzen, Labels, Splits und Generierungslogik:
+Dataset versions primarily capture selection, references, labels, splits, and generation logic:
 
 ```yaml
 dataset: roof_objects_v1
@@ -52,33 +52,33 @@ split:
   version: v1
 ```
 
-## Catalog / STAC Pattern
+## Catalog and STAC pattern
 
-**Candidate:** Ein STAC-basierter Katalog referenziert Assets im Object- oder File Storage und beantwortet Lage, Abdeckung, Zeitpunkt, Collection und Version. Eine produktive STAC-Infrastruktur ist noch nicht festgelegt.
+**Candidate:** A STAC-based catalog references assets in object or file storage and describes location, coverage, time, collection, and version. STAC is well suited to spatiotemporal file assets such as COG and LiDAR, but need not catalog the complete relational entity and feature model. A production STAC implementation has not been selected.
 
 ## LiDAR
 
 ```text
-Raw LAS / LAZ → optimierte Punktwolkenrepräsentation
-              → partieller räumlicher Zugriff → Analyse
+Raw LAS / LAZ → optimized point-cloud representation
+              → partial spatial access → analysis
 ```
 
-COPC ist ein Kandidat, keine verbindliche Festlegung.
+COPC is a candidate, not a binding decision.
 
-## CityGML und skalierbare Verarbeitung
+## CityGML and scalable processing
 
-Raw CityGML bleibt erhalten. Nach Parsing, semantischer Normalisierung und GML-Geometriekonvertierung kann GeoParquet als file-basierte analytische Repräsentation dienen.
+Raw CityGML remains preserved. After parsing, semantic normalization, and GML geometry conversion, GeoParquet can serve as a file-based analytical projection.
 
 ```text
 Raw CityGML → Parsing / Normalization → GeoParquet → Data Science
 ```
 
-**Candidate:** PySpark ist eine verteilte Processing Engine; Apache Sedona ergänzt räumliche Datentypen, Funktionen, Spatial Joins und geospatial File Processing. Sedona versteht CityGML-Semantik nicht automatisch: Hierarchie und Geometrien müssen zuerst explizit aufbereitet werden.
+GeoParquet does not replace CityGML. The projection must preserve hierarchy, semantics, source identifiers, and provenance across products such as `buildings`, `building_parts`, `roof_surfaces`, and `wall_surfaces`.
 
-Konzeptionelle Produkte sind `buildings`, `roof_surfaces` und `wall_surfaces` mit internen und ursprünglichen IDs, Geometrie, Attributen und Source-Version. Das sind keine finalen Schemas.
+**Candidate:** PySpark is a distributed processing engine; Apache Sedona adds spatial types, functions, joins, and geospatial file processing. Sedona does not automatically understand CityGML semantics, so hierarchy and geometries must first be prepared explicitly.
 
-Spark / Sedona eignet sich für große Bestände, wiederkehrende Batch-Jobs, Spatial Joins und parallele Feature-Berechnung. Für einzelne Dateien, wenige Tausend Gebäude oder lokale Experimente kann lokales Python-/Geo-Processing angemessener sein.
+Spark / Sedona may suit large inventories, recurring batch jobs, spatial joins, and parallel feature computation. Local Python or geospatial processing may be more appropriate for individual files, a few thousand buildings, or local experiments. This choice should be benchmarked with real Augsburg CityGML data before becoming a standard.
 
-## Rolle von PostGIS
+## Role of PostGIS
 
-**Candidate:** PostGIS dient kuratierten räumlichen Tabellen, interaktiven Abfragen, APIs, Views, Demonstratoren und Objektintegration. Es ist nicht automatisch Primärspeicher für vollständige Rasterbestände, Roh-Punktwolken, jede CityGML-Repräsentation oder temporäre Trainingschips.
+**Candidate:** PostGIS supports curated spatial tables, a compact canonical entity model, relationships, interactive queries, APIs, views, and demonstrators. It is not automatically the primary store for complete raster inventories, raw point clouds, every CityGML representation, or temporary training chips.

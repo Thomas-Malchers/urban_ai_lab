@@ -1,46 +1,44 @@
-# Entscheidungen & offene Fragen
+# Decisions & Open Questions
 
-## Als Nächstes zu entscheiden
+## Architecture decisions to make next
 
-1. Welche Raw- und Standardformate verwenden wir verbindlich je Datendomäne?
-2. Ist COG das Standardformat für aufbereitete Orthofotos?
-3. Ist GeoParquet das Standardformat für normalisierte CityGML-Daten?
-4. Ab welcher Datengröße oder welchem Workflow setzen wir Spark + Sedona ein?
-5. Welche Rolle übernimmt PostGIS gegenüber dem file-basierten Data Layer?
-6. Welche strukturierten Transformationen sollen mit dbt umgesetzt werden?
+1. What storage pattern applies to each data class?
+2. How do we version and catalog data, assets, and their lineage?
+3. What are our canonical urban entities and stable identifier rules?
+4. How do we distinguish source data, observations, features, imputations, predictions, and manual corrections?
+5. Where does each kind of compute run?
+6. How are data products published and consumed?
 
-## Storage
+Tools support these decisions; they do not define the architecture. Current candidates include COG, GeoParquet, and COPC for storage patterns; STAC for asset catalogs; local Python or Spark / Sedona for compute; dbt for managing suitable SQL transformations; and PostGIS for curated entities, relations, and serving.
 
-- Object Storage oder Filesystem?
-- Wie partitionieren und versionieren wir Assets?
-- Welche Retention- und Cache-Strategien gelten?
+## Storage and catalog
 
-## Raster
+- Object storage or filesystem?
+- Which raw and standardized formats apply to each domain?
+- Is COG the standard for processed orthophotos, GeoParquet for normalized CityGML projections, and COPC useful for LiDAR?
+- How are assets partitioned, versioned, retained, cached, and cataloged through STAC?
 
-- Wie erzeugen und prüfen wir COGs?
-- Wie entstehen dynamische Chips und Dataset Manifests?
-- Welche Exporte benötigt der Annotation-Prozess?
+## Canonical entities and integration
 
-## CityGML
+- Which entities do we introduce first: buildings, roofs, road segments, parcels, vegetation objects, or grid cells?
+- How do we define stable internal IDs, retain source IDs, represent time, and perform cross-source matching?
+- How do normalized CityGML projections preserve hierarchy, semantics, and provenance?
 
-- Welcher Parser und welches normalisierte Semantikmodell werden verwendet?
-- Wie werden GML-Geometrien konvertiert und GeoParquet-Schemas gestaltet?
-- Wo liegt die Schwelle für Spark / Sedona?
+## Value provenance
 
-## Integration
+- Which metadata is mandatory for observed, imported, calculated, imputed, predicted, and manually corrected values?
+- How are conflicts and missing values exposed to consumers?
 
-- Wie definieren wir `building_id`, erhalten Source IDs und behandeln Zeit?
-- Wie erfolgt Cross-Source-Matching?
+## Compute and transformation
 
-## Serving
+- When is local Python sufficient, and when does Spark / Sedona provide measurable value?
+- Which transformations run on Spark / Sedona and which on PostGIS?
+- For which SQL transformations do we use dbt for modeling, versioning, testing, and materialization?
 
-- Welche Daten werden in PostGIS veröffentlicht, welche bleiben file-basiert?
-- Welche APIs werden tatsächlich benötigt?
+## Publication and consumption
 
-## Transformation
+- Which curated entities and relations belong in PostGIS, and which large assets remain file-based?
+- Which products are consumed by Data Science, APIs, visualization, and AI workflows?
+- What review gates apply before predictions are written back as Data Platform products?
 
-- Nutzen wir dbt; wenn ja, für welche Modelle?
-- Wo verläuft die Grenze zwischen Spark SQL und dbt?
-- Welche Tests gehören auf welchen Layer?
-
-Technische Entscheidungen werden weiterhin als ADR im Repository dokumentiert.
+Technical choices continue to be documented as ADRs in this repository.

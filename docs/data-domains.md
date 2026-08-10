@@ -1,14 +1,14 @@
 # Data Domains
 
-| Aspekt | Orthophoto | LiDAR | CityGML |
+| Aspect | Orthophoto | LiDAR | CityGML |
 |---|---|---|---|
-| Datentyp | Raster | Punktwolke | semantisches 3D-Modell |
-| primäre Raw-Repräsentation | GeoTIFF / Source Raster | LAS / LAZ | GML / XML |
-| mögliche standardisierte Repräsentation | COG | LAZ / COPC-Kandidat | GeoParquet |
-| zentrale Einheit | Tile / Asset / Window | Tile / Punkte | Gebäude / Flächen |
-| Processing | Windowing, Resampling, Raster Processing | Filterung, Klassifikation, Spatial Processing | Parsing, Normalisierung, Spatial Processing |
-| Quality | Bild, Auflösung, Abdeckung | Punktdichte, Ausreißer, Klassifikation | Geometrie, Topologie, Semantik |
-| mögliche Compute-Engine | GDAL / Rasterio / Python | PDAL / Python / ggf. Spark | Python / PySpark + Sedona |
-| typische Nutzung | CV, Mapping | Höhe, Gelände, Vegetation | Gebäudeintegration, 3D |
+| Data type | Raster | Point cloud | Semantic 3D model |
+| Primary raw representation | GeoTIFF / source raster | LAS / LAZ | GML / XML |
+| Possible standardized representation | COG | LAZ / COPC candidate | GeoParquet |
+| Central unit | Tile / asset / window | Tile / points | Building / surfaces |
+| Processing | Windowing, resampling, raster processing | Filtering, classification, spatial processing | Parsing, normalization, spatial processing |
+| Quality | Image, resolution, coverage | Point density, outliers, classification | Geometry, topology, semantics |
+| Possible compute engine | GDAL / Rasterio / Python | PDAL / Python / possibly Spark | Python / PySpark + Sedona |
+| Typical use | Computer vision, mapping | Height, terrain, vegetation | Building integration, 3D |
 
-Die genannten Formate und Werkzeuge sind Proposed Patterns beziehungsweise Kandidaten, keine abschließend beschlossene Implementierung. Domänenspezifische Processing- und Quality-Logik wird bei aktiver Umsetzung vertieft.
+These formats and tools are proposed patterns or candidates, not final implementation decisions. Domain-specific processing and quality logic will be refined when implementation starts.

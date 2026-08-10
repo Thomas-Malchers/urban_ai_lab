@@ -1,6 +1,6 @@
 # L1 – Data Platform
 
-## Wie werden heterogene Quellen zu nutzbaren Datenprodukten?
+## How do heterogeneous sources become usable data products?
 
 ```mermaid
 flowchart LR
@@ -8,53 +8,62 @@ flowchart LR
         O["Orthophotos"]
         L["LiDAR"]
         C["CityGML"]
-        E["Weitere Daten"]
+        E["Other data"]
     end
-    RAW["Immutable Source Assets"]
-    subgraph P["Domain Processing"]
-        OP["Orthophoto<br/>Processing + Quality"]
-        LP["LiDAR<br/>Processing + Quality"]
-        CP["CityGML<br/>Processing + Quality"]
-        EP["Other Domain<br/>Processing"]
+    subgraph R["Raw Asset Store / Source Collections"]
+        RO["Raw orthophoto collection"]
+        RL["Raw LiDAR collection"]
+        RC["Raw CityGML collection"]
+        RE["Other raw collections"]
+    end
+    subgraph P["Domain-specific Processing & Quality"]
+        OP["Orthophoto"]
+        LP["LiDAR"]
+        CP["CityGML"]
+        EP["Other domains"]
     end
     subgraph D["Urban Data Layer"]
-        STD["Standardized Data"]
-        INT["Integrated Urban Data"]
-        DER["Derived Features / Indicators"]
+        STD["Standardized / Optimized Domain Assets<br/>COG · LAZ/COPC · normalized GeoParquet"]
+        INT["Integrated Urban Data<br/>Canonical Urban Entities"]
+        DER["Observations · Derived Features · Predictions"]
     end
     subgraph A["Access"]
         DS["Data Science"]
         API["APIs"]
         VIS["Visualization"]
-        AI["AI / Model Platform"]
+        AIM["AI / Model Platform"]
     end
-    O & L & C & E --> RAW
-    RAW --> OP & LP & CP & EP
+
+    O --> RO --> OP
+    L --> RL --> LP
+    C --> RC --> CP
+    E --> RE --> EP
     OP & LP & CP & EP --> STD
     STD --> INT --> DER
-    INT & DER --> DS & API & VIS & AI
+    INT & DER --> DS & API & VIS & AIM
+    AIM -- "Versioned predictions" --> DER
 ```
 
-## Raw / Source Layer
+## Raw asset store and source collections
 
-Originaldaten bleiben nachvollziehbar erhalten und werden nicht überschrieben. Transformationen erzeugen neue Repräsentationen.
+Original assets remain traceable and are never overwritten. They may share physical object storage, but remain separate logical collections for orthophotos, LiDAR, CityGML, and other domains.
 
-## Domain Processing
+## Domain-specific processing
 
-Jede Datenart besitzt eigene Processing- und Quality-Logik. Orthophoto, LiDAR und CityGML werden nicht durch denselben generischen Qualitätsprozess gedrückt.
+Each data type has dedicated processing and quality logic. Orthophotos, LiDAR, and CityGML are not forced through one generic quality process.
 
-## Standardized Data
+## Standardized and optimized domain assets
 
-Daten werden für weitere Verarbeitung aufbereitet. Standardisierung bedeutet nicht, dass alle Domänen dasselbe Format erhalten.
+Standardization produces domain products suited to further processing; it does not force all domains into one homogeneous schema. Examples include COG orthophoto collections, LAZ or COPC LiDAR collections, and normalized GeoParquet city models.
 
-## Integrated Urban Data
+## Integrated urban data
 
-Gemeinsame urbane Objekte verbinden die Quellen. Gebäude sind zunächst ein wichtiger Integrationsanker; Source IDs und Provenance bleiben erhalten.
+Spatial and semantic linking connects assets and records to canonical urban entities such as buildings, roofs, road segments, parcels, vegetation objects, and grid cells. Buildings are the first likely implementation focus, not the platform boundary. Source identifiers and provenance remain intact.
 
-## Derived Features
+## Observations, features, and predictions
 
-Merkmale werden reproduzierbar abgeleitet. Herkunft, Methode und Version bleiben nachvollziehbar.
+Reproducibly derived values retain their source, method, status, and pipeline version. Predictions written back by the AI / Model Platform remain distinguishable from observations, imported values, calculated features, imputations, and manual corrections.
 
 ## Access
 
-Die Plattform stellt Daten für Data Science, APIs, Visualisierung und die AI / Model Platform bereit.
+The platform publishes data for Data Science, APIs, visualization, and the AI / Model Platform. Applications can consume Data Platform products without requiring an AI workflow.
