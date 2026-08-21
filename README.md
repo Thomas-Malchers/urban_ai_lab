@@ -29,4 +29,4 @@ mkdocs build --strict
 
 L3/L4 content will be expanded when concrete pipelines or implementations are developed. See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidance.
 
-17.08.2026
+21.08.2026
